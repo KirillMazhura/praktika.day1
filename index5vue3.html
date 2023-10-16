@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div class="center" id="app">
+        <div class="quote" v-for="qt in quotes">
+            <h3>
+                {{ qt.quote }}
+            </h3>
+            <h5>
+                {{ qt.source }}
+            </h5>
+        </div>
+        <button v-on:click="sortBySource()">Sort</button>
+        <div class="quote" v-for="qt in sorted">
+            <h3>
+                {{ qt.quote }}
+            </h3>
+            <h5>
+                {{ qt.source }}
+            </h5>
+        </div>
+    </div>
+</body>
+<script>
+    var quotesArray = [
+            {
+               "quote": "This is just a Quote1",
+               "source": "Christopher"
+            },
+            {
+               "quote": "This is just a Quote2",
+               "source": "Martin"
+            },
+            {
+               "quote": "This is just a Quote3",
+               "source": "Dennis"
+            },
+  	        {
+               "quote": "This is just a Quote4",
+               "source": ""
+            },
+            ]
+    const { createApp, ref, computed} = Vue;
+    createApp({
+        setup() {
+            const quotes = ref(quotesArray)
+            const isAuthor = ref("")
+            const sorted = ref([])
+
+            sortBySource =  function() {
+                this.sorted = this.quotes.sort((a,b) => (a.source > b.source) ? 1 : -1);
+            }
+            return {quotes, isAuthor, sorted, sortBySource}
+        }
+
+    }).mount('#app')
+    // new Vue({
+    //     el: "#app",
+    //     data: {
+    //         quotes: quotesArray,
+    //         isAuthor: "",
+    //         sorted: []
+    //     },
+    //     methods: {
+    //         sortBySource () {
+    //             this.sorted = this.quotes.sort((a,b) => (a.source > b.source) ? 1 : -1);
+    //         }
+    //     }
+    // })
+
+</script>
+</html>
