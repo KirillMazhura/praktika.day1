@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div class="center" id="app">
+        <div class="quote" v-if="qt.source !== ''" v-for="qt in quotes">
+            <h3>
+                {{ qt.quote }}
+            </h3>
+            <h5>
+                {{ qt.source }}
+            </h5>
+        </div>
+    </div>
+</body>
+<script>
+    var quotesArray = [
+            {
+               "quote": "This is just a Quote1",
+               "source": "Christopher"
+            },
+            {
+               "quote": "This is just a Quote2",
+               "source": "Martin"
+            },
+            {
+               "quote": "This is just a Quote3",
+               "source": "Dennis"
+            },
+  	        {
+               "quote": "This is just a Quote4",
+               "source": ""
+            },
+            ]
+    new Vue({
+        el: "#app",
+        data: {
+            quotes: quotesArray,
+        },
+    })
+
+</script>
+</html>
